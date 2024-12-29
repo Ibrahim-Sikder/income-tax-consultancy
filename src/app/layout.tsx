@@ -7,6 +7,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Toaster } from "sonner";
 import Providers from "@/lib/Theme/Providers";
 import { Header } from "@/components/Share/Header/Header";
+import { Footer } from "@/components/Share/Footer/Footer";
 
 
 const hindiSiliguri = Hind_Siliguri({
@@ -35,9 +36,10 @@ export default function RootLayout({
     <html lang="en" data-scroll="0">
       <Providers>
         <body className={hindiSiliguri.className}>
-          <Header/>
+          <Header />
           <Toaster position="top-center" richColors />
           <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+          <Footer />
         </body>
       </Providers>
     </html>
