@@ -13,7 +13,6 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Button,
   Badge,
   Chip,
   useTheme,
@@ -43,7 +42,7 @@ export function Header() {
   return (
     <>
       <TopBar />
-      <AppBar position="sticky" sx={{ bgcolor: '#1a1a1a', boxShadow: 'none' }}>
+      <AppBar position="sticky" sx={{ bgcolor: '#092A49', boxShadow: 'none' }}>
         <Container maxWidth="lg">
           <Stack
             direction="row"

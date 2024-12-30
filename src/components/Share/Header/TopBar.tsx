@@ -8,7 +8,7 @@ export function TopBar() {
   return (
     <Box
       sx={{
-        bgcolor: 'black',
+        bgcolor: '#0795FE',
         color: 'white',
         py: 1,
       }}
