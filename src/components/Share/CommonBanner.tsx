@@ -50,7 +50,7 @@ const ContentWrapper = styled(Box)({
   textAlign: 'center',
 })
 
-export default function DynamicHeroBanner({ title, backgroundImage, breadcrumbs = [] }: DynamicHeroBannerProps) {
+export default function CommonBanner({ title, backgroundImage, breadcrumbs = [] }: DynamicHeroBannerProps) {
   return (
     <BannerContainer>
       <BackgroundImage

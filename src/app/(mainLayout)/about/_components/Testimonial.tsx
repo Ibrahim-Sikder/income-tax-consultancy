@@ -170,7 +170,7 @@ export default function Testimonials() {
                                             lineHeight: 1
                                         }}
                                     >
-                                        "
+                                    
                                     </Box>
                                     <Typography
                                         sx={{
