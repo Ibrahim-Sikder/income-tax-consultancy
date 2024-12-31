@@ -2,7 +2,6 @@
 
 import ServiceCard from "./ServiceCard";
 
-
 const Services = () => {
     return (
         <div className="relative py-24 bg-black">

@@ -46,7 +46,7 @@ const ServiceCard = () => {
                     <div className="flex items-center justify-center gap-3 mb-6">
                         <Image src={icon} alt="icon" width={24} height={24} />
                         <span className="text-[#44C7F4] font-semibold uppercase tracking-widest">
-                            A Trusted IT Solution
+                            A Trusted Tax Consultancy Solution
                         </span>
                     </div>
                     <h2 className="text-3xl lg:text-5xl font-bold text-white mt-2 leading-tight">
