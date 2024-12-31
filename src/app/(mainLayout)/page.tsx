@@ -1,3 +1,4 @@
+import AboutCompany from "@/components/ui/Homepage/AboutCompany/AboutCompany";
 import BlogSection from "@/components/ui/Homepage/Blog/Blog";
 import ConsultingSection from "@/components/ui/Homepage/ConsultancSection/ConsultanceSection";
 import Feedback from "@/components/ui/Homepage/Feedback/Feedback";
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <HeroSlider />
       <Services />
+      <AboutCompany />
       <ConsultingSection />
       <JoinUsSection />
       <Feedback />

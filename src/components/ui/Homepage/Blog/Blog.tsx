@@ -1,158 +1,245 @@
 'use client'
 
-import React, { useEffect, useRef } from "react";
-import { Box, Typography, Card } from "@mui/material";
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/effect-coverflow'
-import { gsap } from "gsap";
+import { useEffect, useRef, useState } from 'react'
+import { Box, Container, Typography, Card, CardContent, IconButton } from '@mui/material'
+import { gsap } from 'gsap'
+import Image from 'next/image'
+import { ArrowForward } from '@mui/icons-material'
+import { styled } from '@mui/material/styles'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import blog from '../../../../../src/assets/image/blog/blog.jpg'
 
-const BlogSection = () => {
-    const hoverRefs = useRef([]);
+gsap.registerPlugin(ScrollTrigger)
 
-    useEffect(() => {
-        hoverRefs.current.forEach((ref) => {
-            if (ref) {
-                gsap.fromTo(
-                    ref.querySelector(".details"),
-                    { opacity: 0, y: 20 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.3,
-                        paused: true,
-                        ease: "power2.out",
-                        onReverseComplete: () => (ref.querySelector(".details").style.display = "none"),
-                    }
-                );
-            }
-        });
-    }, []);
+const StyledCard = styled(Card)(({ theme }) => ({
+  position: 'relative',
+  backgroundColor: 'transparent',
+  color: 'white',
+  overflow: 'hidden',
+  cursor: 'pointer',
+  height: '100%',
+  '& .arrow-button': {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    opacity: 0,
+    transform: 'translateX(20px)',
+    transition: 'all 0.3s ease-in-out',
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
+  '& .card-overlay': {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    transition: 'background-color 0.3s ease-in-out',
+  },
+}))
 
-    const handleHover = (index: number, isHover: boolean) => {
-        const tl = gsap.timeline();
-        const detailsElement = hoverRefs.current[index]?.querySelector(".details");
-        if (detailsElement) {
-            detailsElement.style.display = isHover ? "block" : "none";
-            isHover ? tl.play() : tl.reverse();
-        }
-    };
+const newsItems = [
+  {
+    id: 1,
+    title: 'Reasons to explain fast business builder.',
+    date: 'November 5, 2019',
+    author: 'Admin',
+    image: blog,
+  },
+  {
+    id: 2,
+    title: 'Blackpool polices hunt for David Schwimmer',
+    date: 'November 4, 2018',
+    author: 'Admin',
+    image: blog,
+  },
+  {
+    id: 3,
+    title: 'How Stay Calm from the First Time.',
+    date: 'November 5, 2019',
+    author: 'Admin',
+    image: blog,
+  },
+]
 
-    const newsData = [
-        {
-            title: "Reasons to explain fast business builder.",
-            date: "November 5, 2019",
-            author: "Admin",
-            image: "https://via.placeholder.com/400x300",
-        },
-        {
-            title: "Blackpool polices hunt for David Schwimmer",
-            date: "November 4, 2018",
-            author: "Admin",
-            image: "https://via.placeholder.com/400x300",
-        },
-        {
-            title: "How Stay Calm from the First Time.",
-            date: "November 5, 2019",
-            author: "Admin",
-            image: "https://via.placeholder.com/400x300",
-        },
-        {
-            title: "How Stay Calm from the First Time.",
-            date: "November 5, 2019",
-            author: "Admin",
-            image: "https://via.placeholder.com/400x300",
-        },
-        {
-            title: "How Stay Calm from the First Time.",
-            date: "November 5, 2019",
-            author: "Admin",
-            image: "https://via.placeholder.com/400x300",
-        },
-        {
-            title: "How Stay Calm from the First Time.",
-            date: "November 5, 2019",
-            author: "Admin",
-            image: "https://via.placeholder.com/400x300",
-        },
-    ];
+export default function NewsSection() {
+  const sectionRef = useRef(null)
+  const cardsRef = useRef([])
+  const [hoveredCard, setHoveredCard] = useState(null)
 
-    return (
-        <Box sx={{ backgroundColor: "#000", color: "#fff", py: 8, px: 2 }}>
-            <Typography variant="h6" align="center" sx={{ color: "#00f" }}>
-                LATEST NEWS
-            </Typography>
-            <Typography variant="h3" align="center" fontWeight="bold">
-                We’re ready to share our advice and experience.
-            </Typography>
-            <Typography align="center" sx={{ mt: 2, mb: 4 }}>
-                Like what you see? Contact us to see what type of solutions we can deploy for your business!
-            </Typography>
+  useEffect(() => {
+    const section = sectionRef.current
+    const cards = cardsRef.current
 
-            <Swiper
-                spaceBetween={20}
-                slidesPerView={3}
-                modules={[Navigation, Pagination]}
-                navigation
-                pagination={{ clickable: true }}
-                style={{ padding: "0 20px" }}
-            >
-                {newsData.map((news, index) => (
-                    <SwiperSlide key={index}>
-                        <Card
-                            ref={(el) => (hoverRefs.current[index] = el)}
-                            sx={{
-                                position: "relative",
-                                overflow: "hidden",
-                                "&:hover .details": { display: "block" },
-                                "&:hover img": { transform: "scale(1.1)" },
-                            }}
-                            onMouseEnter={() => handleHover(index, true)}
-                            onMouseLeave={() => handleHover(index, false)}
-                        >
-                            <Box
-                                component="img"
-                                src={news.image}
-                                alt={news.title}
-                                sx={{
-                                    width: "100%",
-                                    height: "300px",
-                                    objectFit: "cover",
-                                    transition: "transform 0.5s ease",
-                                }}
-                            />
-                            <Box
-                                className="details"
-                                sx={{
-                                    position: "absolute",
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    bgcolor: "rgba(0, 0, 0, 0.7)",
-                                    color: "#fff",
-                                    padding: 2,
-                                    display: "none",
-                                    zIndex: 1,
-                                }}
-                            >
-                                <Typography variant="body2" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                    <span role="img" aria-label="calendar">
-                                        📅
-                                    </span>
-                                    {news.date} | {news.author}
-                                </Typography>
-                                <Typography variant="h6" sx={{ mt: 1 }}>
-                                    {news.title}
-                                </Typography>
-                            </Box>
-                        </Card>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+    gsap.set([section, ...cards], { opacity: 0, y: 50 })
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse',
+      },
+    })
+
+    tl.to(section, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power3.out',
+    })
+      .to(cards, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
+      }, '-=0.5')
+
+    cards.forEach((card, index) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top bottom-=100',
+          end: 'bottom top+=100',
+          toggleActions: 'play none none reverse',
+        },
+        scale: 1,
+        opacity: 1,
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: 'power2.out',
+      })
+    })
+
+    return () => {
+      tl.kill()
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
+  const handleCardHover = (id, isEnter) => {
+    setHoveredCard(isEnter ? id : null)
+    gsap.to(cardsRef.current[id - 1], {
+      scale: isEnter ? 1.05 : 1,
+      duration: 0.3,
+      ease: 'power2.out',
+    })
+  }
+
+  return (
+    <Box sx={{ bgcolor: 'black', py: 8, minHeight: '100vh' }}>
+      <Container maxWidth="lg">
+        <Box ref={sectionRef} sx={{ textAlign: 'center', mb: 8 }}>
+          <Typography
+            variant="overline"
+            sx={{
+              color: '#007FFF',
+              fontWeight: 600,
+              letterSpacing: 1,
+              mb: 2,
+              display: 'block',
+            }}
+          >
+            LATEST NEWS
+          </Typography>
+          <Typography
+            variant="h2"
+            sx={{
+              color: 'white',
+              fontWeight: 700,
+              mb: 3,
+              fontSize: { xs: '2rem', md: '3.5rem' },
+              lineHeight: 1.2,
+            }}
+          >
+            We're ready to share our
+            <br />
+            advice and experience.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              color: 'rgba(255, 255, 255, 0.7)',
+              maxWidth: '600px',
+              mx: 'auto',
+              fontSize: '1.1rem',
+            }}
+          >
+            Like what you see? Contact us to see what type of solutions
+            we can deploy for your business!
+          </Typography>
         </Box>
-    );
-};
 
-export default BlogSection;
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              md: 'repeat(3, 1fr)',
+            },
+            gap: 3,
+          }}
+        >
+          {newsItems.map((item, index) => (
+            <StyledCard
+              key={item.id}
+              elevation={0}
+              ref={(el) => (cardsRef.current[index] = el)}
+              onMouseEnter={() => handleCardHover(item.id, true)}
+              onMouseLeave={() => handleCardHover(item.id, false)}
+            >
+              <Box sx={{ position: 'relative', paddingTop: '75%' }}>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+                <Box className="card-overlay" />
+                <CardContent
+                  sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    p: 3,
+                  }}
+                >
+                  <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+                    <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+                      {item.date}
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+                      {item.author}
+                    </Typography>
+                  </Box>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: 'white',
+                      fontWeight: 600,
+                      fontSize: '1.25rem',
+                      transition: 'transform 0.3s ease-in-out',
+                      transform: hoveredCard === item.id ? 'translateY(-10px)' : 'none',
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                </CardContent>
+                <IconButton className="arrow-button" size="small">
+                  <ArrowForward />
+                </IconButton>
+              </Box>
+            </StyledCard>
+          ))}
+        </Box>
+      </Container>
+    </Box>
+  )
+}
+
