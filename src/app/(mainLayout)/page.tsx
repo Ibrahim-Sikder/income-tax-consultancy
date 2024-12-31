@@ -1,3 +1,4 @@
+import BlogSection from "@/components/ui/Homepage/Blog/Blog";
 import ConsultingSection from "@/components/ui/Homepage/ConsultancSection/ConsultanceSection";
 import Feedback from "@/components/ui/Homepage/Feedback/Feedback";
 import { HeroSlider } from "@/components/ui/Homepage/HeroSlider/HeroSlider";
@@ -12,8 +13,9 @@ export default function Home() {
       <Services />
       <ConsultingSection />
       <JoinUsSection />
-      <Feedback/>
-      <TeamSlider/>
+      <Feedback />
+      <TeamSlider />
+      <BlogSection />
     </>
   );
 }
