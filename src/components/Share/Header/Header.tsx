@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   AppBar,
   Box,
@@ -19,21 +19,26 @@ import {
   useMediaQuery,
 } from '@mui/material'
 import { Menu as MenuIcon, Close, Search, ShoppingCart } from '@mui/icons-material'
+import Link from 'next/link'
 import { TopBar } from './TopBar'
 
 const menuItems = [
-  { text: 'Demos', isNew: false },
-  { text: 'Services', isNew: true },
-  { text: 'Pages', isNew: false },
-  { text: 'Portfolio', isNew: false },
-  { text: 'Blog', isNew: false },
-  { text: 'Elements', isNew: false },
+  { text: 'Home', href: '/', isNew: false },
+  { text: 'Services', href: '/services', isNew: true },
+  { text: 'About', href: '/about', isNew: false },
+  { text: 'Blog', href: '/blog', isNew: false },
+  { text: 'Contact', href: '/contact', isNew: false },
 ]
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const theme = useTheme()
+  const [isMounted, setIsMounted] = useState(false)
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -82,33 +87,36 @@ export function Header() {
             </Box>
 
             {/* Desktop Menu */}
-            {!isMobile && (
-              <Stack  direction="row" spacing={5}>
+            {isMounted && !isMobile && (
+              <Stack direction="row" spacing={5}>
                 {menuItems.map((item) => (
-                  <Box
-                    key={item.text}
-                    color="inherit"
-                    sx={{
-                      position: 'relative',
-                      '&:hover': { color: '#007bff' },
-                    }}
-                  >
-                    {item.text}
-                    {item.isNew && (
-                      <Chip
-                        label="NEW"
-                        size="small"
-                        sx={{
-                          position: 'absolute',
-                          top: -8,
-                          right: -20,
-                          bgcolor: '#007bff',
-                          color: 'white',
-                          height: 20,
-                        }}
-                      />
-                    )}
-                  </Box>
+                  <Link href={item.href} key={item.text} passHref>
+                    <Box
+                      component="a"
+                      color="inherit"
+                      sx={{
+                        position: 'relative',
+                        textDecoration: 'none',
+                        '&:hover': { color: '#007bff' },
+                      }}
+                    >
+                      {item.text}
+                      {item.isNew && (
+                        <Chip
+                          label="NEW"
+                          size="small"
+                          sx={{
+                            position: 'absolute',
+                            top: -8,
+                            right: -20,
+                            bgcolor: '#007bff',
+                            color: 'white',
+                            height: 20,
+                          }}
+                        />
+                      )}
+                    </Box>
+                  </Link>
                 ))}
               </Stack>
             )}
@@ -123,7 +131,7 @@ export function Header() {
                   <ShoppingCart />
                 </Badge>
               </IconButton>
-              {isMobile && (
+              {isMounted && isMobile && (
                 <IconButton
                   color="inherit"
                   edge="end"
@@ -157,20 +165,24 @@ export function Header() {
           <List sx={{ pt: 8 }}>
             {menuItems.map((item) => (
               <ListItem key={item.text} disablePadding>
-                <ListItemButton sx={{ '&:hover': { color: '#007bff' } }}>
-                  <ListItemText primary={item.text} />
-                  {item.isNew && (
-                    <Chip
-                      label="NEW"
-                      size="small"
-                      sx={{
-                        bgcolor: '#007bff',
-                        color: 'white',
-                        height: 20,
-                      }}
-                    />
-                  )}
-                </ListItemButton>
+                <Link href={item.href} passHref>
+                  <ListItemButton
+                    sx={{ textDecoration: 'none', '&:hover': { color: '#007bff' } }}
+                  >
+                    <ListItemText primary={item.text} />
+                    {item.isNew && (
+                      <Chip
+                        label="NEW"
+                        size="small"
+                        sx={{
+                          bgcolor: '#007bff',
+                          color: 'white',
+                          height: 20,
+                        }}
+                      />
+                    )}
+                  </ListItemButton>
+                </Link>
               </ListItem>
             ))}
           </List>
@@ -179,4 +191,3 @@ export function Header() {
     </>
   )
 }
-
