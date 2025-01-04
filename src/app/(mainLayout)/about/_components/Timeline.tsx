@@ -186,14 +186,14 @@ export default function Timeline() {
               height: '100%',
               bgcolor: '#0088ff',
               transformOrigin: 'top',
-              ref: timelineRef
+              // ref: timelineRef
             }
           }}
         >
           {timelineData.map((item, index) => (
             <Box
               key={index}
-              ref={el => itemsRef.current[index] = el}
+              // ref={el => itemsRef.current[index] = el}
               className={item.side}
               sx={{
                 position: 'relative',
