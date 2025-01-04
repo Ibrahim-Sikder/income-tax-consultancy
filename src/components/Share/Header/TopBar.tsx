@@ -51,11 +51,11 @@ export function TopBar() {
           >
             <Stack direction="row" alignItems="center" spacing={1}>
               <Email fontSize="small" />
-              <Typography variant="body2">info@consultio.com</Typography>
+              <Typography variant="body2">sabbirh354@gmail.com</Typography>
             </Stack>
             <Stack direction="row" alignItems="center" spacing={1}>
               <Phone fontSize="small" />
-              <Typography variant="body2">(210) 123 451</Typography>
+              <Typography variant="body2">+880 1851-375626</Typography>
             </Stack>
             <Stack direction="row" alignItems="center" spacing={1}>
               <AccessTime fontSize="small" />

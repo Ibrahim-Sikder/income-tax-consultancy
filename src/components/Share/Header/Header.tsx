@@ -13,18 +13,18 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Badge,
   Chip,
   useTheme,
   useMediaQuery,
+  Button,
 } from '@mui/material'
-import { Menu as MenuIcon, Close, Search, ShoppingCart } from '@mui/icons-material'
+import { Menu as MenuIcon, Close, } from '@mui/icons-material'
 import Link from 'next/link'
 import { TopBar } from './TopBar'
 
 const menuItems = [
   { text: 'Home', href: '/', isNew: false },
-  { text: 'Services', href: '/services', isNew: true },
+  { text: 'Services', href: '/services' },
   { text: 'About', href: '/about', isNew: false },
   { text: 'Blog', href: '/blog', isNew: false },
   { text: 'Contact', href: '/contact', isNew: false },
@@ -58,7 +58,7 @@ export function Header() {
             {/* Logo */}
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Typography
-                variant="h5"
+                variant="h4"
                 component="div"
                 sx={{
                   fontWeight: 'bold',
@@ -68,21 +68,8 @@ export function Header() {
                   gap: 1,
                 }}
               >
-                <Box
-                  component="span"
-                  sx={{
-                    bgcolor: '#007bff',
-                    width: 40,
-                    height: 40,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 1,
-                  }}
-                >
-                  C
-                </Box>
-                Consultio
+               
+                SITC
               </Typography>
             </Box>
 
@@ -123,14 +110,8 @@ export function Header() {
 
             {/* Right Actions */}
             <Stack direction="row" spacing={1} alignItems="center">
-              <IconButton color="inherit">
-                <Search />
-              </IconButton>
-              <IconButton color="inherit">
-                <Badge badgeContent={2} color="primary">
-                  <ShoppingCart />
-                </Badge>
-              </IconButton>
+              <Button>Quick Contact </Button>
+
               {isMounted && isMobile && (
                 <IconButton
                   color="inherit"
@@ -152,7 +133,7 @@ export function Header() {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             '& .MuiDrawer-paper': {

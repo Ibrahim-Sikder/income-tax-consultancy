@@ -1,38 +1,43 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
-
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { Box, Container, Typography, } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import Image from 'next/image'
 import about from '../../../.../../../../src/assets/image/team/about.jpg'
 import about2 from '../../../.../../../../src/assets/image/team/about2.jpg'
+
 export default function AboutCompany() {
-    const statsRef = useRef(null)
-    const textRef = useRef(null)
-    const imageRef = useRef(null)
+    const statsRef = useRef<HTMLDivElement | null>(null) // Explicit type added
+    const textRef = useRef<HTMLDivElement | null>(null)
+    const imageRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
         // Animate the main content
-        gsap.from(textRef.current, {
-            duration: 1,
-            y: 30,
-            opacity: 1,
-            ease: 'power3.out'
-        })
+        if (textRef.current) {
+            gsap.from(textRef.current, {
+                duration: 1,
+                y: 30,
+                opacity: 1,
+                ease: 'power3.out',
+            })
+        }
 
         // Animate the image
-        gsap.from(imageRef.current, {
-            duration: 1.2,
-            x: -50,
-            opacity: 1,
-            ease: 'power3.out',
-            delay: 0.3
-        })
+        if (imageRef.current) {
+            gsap.from(imageRef.current, {
+                duration: 1.2,
+                x: -50,
+                opacity: 1,
+                ease: 'power3.out',
+                delay: 0.3,
+            })
+        }
 
         // Animate statistics with counting effect
-        const stats = statsRef.current?.querySelectorAll('.stat-number')
-        stats?.forEach((stat: HTMLElement) => {
+        const stats = statsRef.current?.querySelectorAll<HTMLElement>('.stat-number') // Added explicit type
+        stats?.forEach((stat) => {
             const value = stat.getAttribute('data-value')
             gsap.from(stat, {
                 textContent: 0,
@@ -40,9 +45,9 @@ export default function AboutCompany() {
                 ease: 'power1.out',
                 snap: { textContent: 1 },
                 stagger: {
-                    each: 0.2
+                    each: 0.2,
                 },
-                delay: 0.5
+                delay: 0.5,
             })
         })
     }, [])
@@ -54,7 +59,7 @@ export default function AboutCompany() {
                     ref={imageRef}
                     sx={{
                         position: 'relative',
-                        flex: '0 0 45%'
+                        flex: '0 0 45%',
                     }}
                 >
                     <Image
@@ -90,7 +95,7 @@ export default function AboutCompany() {
                             color: 'primary.main',
                             fontWeight: 600,
                             mb: 1,
-                            display: 'block'
+                            display: 'block',
                         }}
                     >
                         Get Introduction
@@ -103,7 +108,7 @@ export default function AboutCompany() {
                             fontWeight: 700,
                             mb: 3,
                             fontSize: { xs: '2.5rem', md: '3.5rem' },
-                            lineHeight: 1.2
+                            lineHeight: 1.2,
                         }}
                     >
                         Welcome To Our Insurance Company
@@ -115,7 +120,7 @@ export default function AboutCompany() {
                             color: 'text.main',
                             mb: 4,
                             fontSize: '1.1rem',
-                            lineHeight: 1.7
+                            lineHeight: 1.7,
                         }}
                     >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -125,7 +130,7 @@ export default function AboutCompany() {
                         {[
                             'Suspe ndisse suscipit sagittis leo.',
                             'Entum estibulum dignissim posuere.',
-                            'Lorem ipsum gene on the tend to repeat.'
+                            'Lorem ipsum gene on the tend to repeat.',
                         ].map((text, index) => (
                             <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                                 <CheckCircleIcon sx={{ color: 'primary.main', mr: 1 }} />
@@ -143,7 +148,7 @@ export default function AboutCompany() {
                             gap: 4,
                             bgcolor: 'primary.50',
                             p: 4,
-                            borderRadius: 2
+                            borderRadius: 2,
                         }}
                     >
                         <Box>
@@ -154,7 +159,7 @@ export default function AboutCompany() {
                                 sx={{
                                     color: 'primary.main',
                                     fontWeight: 700,
-                                    mb: 1
+                                    mb: 1,
                                 }}
                             >
                                 780+
@@ -171,7 +176,7 @@ export default function AboutCompany() {
                                 sx={{
                                     color: 'primary.main',
                                     fontWeight: 700,
-                                    mb: 1
+                                    mb: 1,
                                 }}
                             >
                                 990+
@@ -186,4 +191,3 @@ export default function AboutCompany() {
         </Container>
     )
 }
-

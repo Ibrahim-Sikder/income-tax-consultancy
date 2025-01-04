@@ -162,15 +162,15 @@ export function Footer() {
             <Stack spacing={2}>
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <LocationOn sx={{ color: '#FFA500' }} />
-                <Typography sx={{ color: '#999' }}>99 Roving St., Pku</Typography>
+                <Typography sx={{ color: '#999', textDecoration: 'capitalize' }}>Skilark point,with hotel 71, bijoynagar,dhaka-1000</Typography>
               </Box>
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Phone sx={{ color: '#FFA500' }} />
-                <Typography sx={{ color: '#999' }}>+123-456-789</Typography>
+                <Typography sx={{ color: '#999' }}>+880 1851-375626</Typography>
               </Box>
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Email sx={{ color: '#FFA500' }} />
-                <Typography sx={{ color: '#999' }}>hello@awesomesite.com</Typography>
+                <Typography sx={{ color: '#999' }}>shantinagar.itc@gmail.com</Typography>
               </Box>
               <Box>
                 <Typography sx={{ mb: 1, color: '#999' }}>Social media :</Typography>

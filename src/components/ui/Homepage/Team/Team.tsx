@@ -265,7 +265,7 @@ export default function TeamSlider() {
                                                         <IconButton
                                                             key={index}
                                                             size="small"
-                                                            ref={(el) => (socialIconsRef.current[index] = el)}
+                                                            // ref={(el) => (socialIconsRef.current[index] = el)}
                                                             sx={{
                                                                 color: social.color,
                                                                 bgcolor: 'background.paper',

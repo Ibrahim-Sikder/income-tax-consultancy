@@ -7,35 +7,50 @@ import serviceBanner from '../../../../src/assets/image/services/service2.jpg'
 
 const services = [
     {
-        title: 'Financial Limit',
+        title: 'Income Tax',
         description: 'Lorem Ipsum is simply dummy text of the printing and its typeseting industry.',
         icon: 'FinancialLimitIcon'
     },
     {
-        title: 'Financial Growth',
+        title: 'Vat',
         description: 'Lorem Ipsum is simply dummy text of the printing and its typeseting industry.',
         icon: 'FinancialGrowthIcon'
     },
     {
-        title: 'Tax Management',
+        title: 'Trade Liscence',
         description: 'Lorem Ipsum is simply dummy text of the printing and its typeseting industry.',
         icon: 'TaxManagementIcon'
     },
     {
-        title: 'Customer Experience',
+        title: 'Company Registration',
         description: 'Lorem Ipsum is simply dummy text of the printing and its typeseting industry.',
         icon: 'CustomerExperienceIcon'
     },
     {
-        title: 'Private Equity',
+        title: 'Export',
         description: 'Lorem Ipsum is simply dummy text of the printing and its typeseting industry.',
         icon: 'PrivateEquityIcon'
     },
     {
-        title: 'Automotive & Mobility',
+        title: 'Import',
         description: 'Lorem Ipsum is simply dummy text of the printing and its typeseting industry.',
         icon: 'AutomotiveIcon'
-    }
+    },
+    {
+        title: 'Tradmark',
+        description: 'Lorem Ipsum is simply dummy text of the printing and its typeseting industry.',
+        icon: 'AutomotiveIcon'
+    },
+    {
+        title: 'Audit',
+        description: 'Lorem Ipsum is simply dummy text of the printing and its typeseting industry.',
+        icon: 'AutomotiveIcon'
+    },
+    {
+        title: 'Copyright',
+        description: 'Lorem Ipsum is simply dummy text of the printing and its typeseting industry.',
+        icon: 'AutomotiveIcon'
+    },
 ] as const
 
 export default function ServicesSection() {
