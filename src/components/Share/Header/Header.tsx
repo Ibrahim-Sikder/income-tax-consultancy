@@ -28,6 +28,7 @@ const menuItems = [
   { text: 'About', href: '/about', isNew: false },
   { text: 'Blog', href: '/blog', isNew: false },
   { text: 'Contact', href: '/contact', isNew: false },
+  { text: 'Contact', href: '/contact', isNew: false },
 ]
 
 export function Header() {
